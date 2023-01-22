@@ -10,6 +10,52 @@
 
 using namespace std;
     
+// regex simboloebit mowmdeba tu aris sworad dawerili romauli ricxvebi
+    bool validationOfRoman(string str){
+        transform(str.begin(), str.end(), str.begin(), ::toupper);
+        const regex pattern("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
+        if (str.empty()) {
+            return false;
+        }
+        if (regex_match(str, pattern)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+int roman_to_int(std::string s) {
+    transform(s.begin(), s.end(), s.begin(), ::toupper);
+    std::map<char, int> roman_map = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
+
+    int result = 0;
+    int prev = 0;
+    for (int i = s.size() - 1; i >= 0; i--) {
+        int current = roman_map[s[i]];
+        if (current < prev) {
+            result -= current;
+        } else {
+            result += current;
+        }
+        prev = current;
+    }
+    return result;
+}
+    
+    void int_to_roman(int number){
+        int num[] = {1,4,5,9,10,40,50,90,100,400,500,900,1000};
+        string sym[] = {"I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"};
+        int i=12;   
+        while(number>0){
+            int division = number/num[i];
+            number = number%num[i];
+            while(division--){
+                cout<<sym[i];
+            }
+            i--;
+        }
+    }
+
     // romeli operaciaa gasaketebeli imas eubneba
     double performOperation(char op, double num1, double num2) {
     switch (op) {
