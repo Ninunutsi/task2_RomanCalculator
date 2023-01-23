@@ -56,6 +56,49 @@ int roman_to_int(std::string s) {
         }
     }
 
+
+      //  amowmebs sheyvanili ricxvebi aris tu ara swori.
+    // anu ra asoebicaa sachiro romauli ricxvebis chasawerad
+    // imat garda nebismier simbolos tu sheiyvans momxmarebeli amougdebs 
+    // shesabamiss shetyobinebas da tavidan motxovs ricxvis shetanas
+    bool check_valid_roman(std::string roman){
+        // gadayavs inputs did asoebshi.
+        // anu sworad shesruldeba operacia im shemtxvevashic tu momxmarebelma
+        // patara asoebi sheiyvana
+        transform(roman.begin(), roman.end(), roman.begin(), ::toupper);
+        // dictionary of valid Roman numerals
+        std::string valid_romans = "IVXLCDM";
+        for (int i = 0; i < roman.length(); i++) {
+            if (valid_romans.find(roman[i]) == std::string::npos) {
+                // the character is not valid
+                return false;
+            }else{
+                return true;
+            };
+        };
+        
+        return true;
+    };
+    
+    // amowmebs sworad aris tu ara sheyvanili matematikuri operacia.
+    // es da zemota funqcia ideashi motxovnili ar iyo magram damatebiti funqcionalia
+    // romelic momxmarebels ufro met tavisuflebas miscems kalkulatoris gamoyenebisas.
+    bool check_valid_math_operation(string operation){
+        if(operation.length()>1){
+            return false;
+        };
+        string valid_operation = "+-*/"; //ganvixilav mxolod otxs specialurad
+        for (int i = 0; i < operation.length(); i++){
+            if(valid_operation.find(operation[i]) == string::npos){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        return true;
+    };
+    
+
     // romeli operaciaa gasaketebeli imas eubneba
     double performOperation(char op, double num1, double num2) {
     switch (op) {
